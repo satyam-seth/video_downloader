@@ -2,7 +2,57 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid">
-    
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white ">Paste your YouTube video link and click Go</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-1"></div>
+        <div class="col-12 col-md-10 px-3">
+            <form>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="link">Link</span>
+                    </div>
+                    <input type="text" class="form-control shadow-lg" placeholder="paste your video link here">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-danger">Go</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="offset-md-1"></div>
+    </div>
+    <div class="row pt-4">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white ">How to download YouTube video online?</p>
+        </div>
+    </div>
+    <div class="row pt-2 text-white text-center">
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4">
+                <div class="h3">Copy YouTube URL</div>
+                <div class="p">Copy your video URL from YouTube that you need to download. You can use Ctrl+C or with
+                    the
+                    context menu.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4">
+                <div class="h3 py-1">Paste in search field</div>
+                <div class="p py-2">Paste YouTube video URL in the search field and click 'Go'. Use Ctrl+V.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4">
+                <div class="h3">Download Video</div>
+                <div class="p">You will get a list of files for download, video, and audio. Click the 'Download' button
+                    to
+                    start downloading the file</div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
