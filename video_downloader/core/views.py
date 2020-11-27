@@ -3,4 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 
 def home(request):
-    return render(request,'core/home.html')
+    context={
+        'home_active':'active',
+        'home_disabled':'disabled',
+        }
+    return render(request,'core/home.html',context)

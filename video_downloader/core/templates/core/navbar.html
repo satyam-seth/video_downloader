@@ -1,28 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-mainbg">
-    <a class="navbar-brand navbar-logo" href="#">Video Downloader</a>
+    <a class="navbar-brand navbar-logo" href="{% url 'home' %}">Video Downloader</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars text-white"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            <li class="nav-item {{home_active}}">
+                <a class="nav-link {{home_disabled}}" href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Address Book</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
+            <li class="nav-item {{youtube_active}}">
+                <a class="nav-link {{youtube_disabled}}" href="{% url 'youtube_go' %}"><i class="fab fa-youtube"></i> YouTube</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
+                <a class="nav-link" href="javascript:void(0);"><i class="fab fa-facebook"></i> Facebook</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                <a class="nav-link" href="javascript:void(0);"><i class="fab fa-instagram"></i> Instagram</a>
             </li>
         </ul>
     </div>
