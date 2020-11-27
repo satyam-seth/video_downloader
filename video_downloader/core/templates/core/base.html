@@ -7,12 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>{% block title %}Video Downloader{% endblock title %}</title>
+  <!-- <link rel="icon" type="image/png" href="{% static 'core/images/fav.png' %}"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 
 <body>
+
+  <div>
+    {% include 'core/navbar.html' %}
+  </div>
 
   <div class="container-fluid">
     <div class="row">
@@ -21,10 +28,15 @@
     </div>
   </div>
 
+  <div>
+    {% include 'core/footer.html' %}
+  </div>
+  
   <script src="{% static 'core/js/jquery.js' %}"></script>
   <script src="{% static 'core/js/popper.js' %}"></script>
   <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'core/js/all.min.js' %}"></script>
+  <script src="{% static 'core/js/script.js' %}"></script>
 </body>
 
 </html>
