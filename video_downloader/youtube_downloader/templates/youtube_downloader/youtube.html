@@ -11,7 +11,7 @@
     <div class="row">
         <div class="offset-md-1"></div>
         <div class="col-12 col-md-10 px-3">
-            <form action="{% url 'youtube_go' %}" method="POST">
+            <form action="{% url 'youtube_index' %}" method="POST">
                 {% csrf_token %}
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -31,7 +31,21 @@
     {% if download %}
     <div class="row mt-5 shadow-lg border rounded">
         <div class="col-12 col-md-6 py-3">
-            <div class="embed-responsive embed-responsive-16by9 border shadow">
+            <img src="{{tumbnail_url}}" class="img-thumbnail shadow" alt="tumbnail image"><br>
+            <p class="p-2 mt-2 text-white shadow border rounded" style="font-size: 10vm;">Title: {{title}}</p>
+            <p class="pt-1 text-white" style="font-size: 10vm;">
+                <span class="border rounded shadow p-2">Views: {{view}}</span>
+                <span class="border rounded shadow p-2">Duration: {{length}}</span>
+                <button class="btn btn-outline-light shadow" type="button" data-toggle="collapse" data-target="#desc" aria-expanded="false" aria-controls="collapseExample">
+                    Description
+                </button>
+            </p>
+            <div class="collapse" id="desc">
+                <div class="card card-body shadow">
+                    {{desc}}
+                </div>
+              </div>
+            <div class="embed-responsive embed-responsive-21by9 border shadow my-2">
                 <iframe class="embed-responsive-item" src="{{embed_link}}"></iframe>
               </div>
         </div>
@@ -39,37 +53,19 @@
             <table class="table table-hover text-white text-center table-striped border shadow">
                 <thead style="background-color: #334390;">
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Action</th>
+                      <th scope="col">Quality</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
+                    {% for video in videos %}
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-success">Download</button></td>
+                    <th>{{video.resolution}}</th>
+                    <td>{{video.mime_type}}</td>
+                    <td><a href="{% url 'youtube_downloads' id video.itag %}" type="button" class="btn btn-sm btn-success">Download</a></td>
                   </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-success">Download</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td><button type="button" class="btn btn-success">Download</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td><button type="button" class="btn btn-success">Download</button></td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
         </div>
