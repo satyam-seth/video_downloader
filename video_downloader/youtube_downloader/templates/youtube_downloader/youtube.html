@@ -3,6 +3,107 @@
 
 {% block content %}
 <div class="container">
-    youtube page
+    <div class="row pt-5">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white ">Paste your YouTube video link and click Go</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-1"></div>
+        <div class="col-12 col-md-10 px-3">
+            <form action="{% url 'youtube_go' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="{{form.link.id_for_label}}">{{form.link.label}}</span>
+                    </div>
+                    {{form.link}}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-danger">Go</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="offset-md-1"></div>
+    </div>
+
+    <!-- download page only -->
+    {% if download %}
+    <div class="row mt-5 shadow-lg border rounded">
+        <div class="col-12 col-md-6 py-3">
+            <div class="embed-responsive embed-responsive-16by9 border shadow">
+                <iframe class="embed-responsive-item" src="{{embed_link}}"></iframe>
+              </div>
+        </div>
+        <div class="col-12 col-md-6 pt-3">
+            <table class="table table-hover text-white text-center table-striped border shadow">
+                <thead style="background-color: #334390;">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">Download</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td><button type="button" class="btn btn-success">Download</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td><button type="button" class="btn btn-success">Download</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td><button type="button" class="btn btn-success">Download</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    {% endif %}
+    <!-- end download page only -->
+
+    <div class="row pt-5">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white">How to download YouTube video online?</p>
+        </div>
+    </div>
+    <div class="row pt-2 text-white text-center">
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3">Copy YouTube URL</div>
+                <div class="p">Copy your video URL from YouTube that you need to download. You can use Ctrl+C or with
+                    the
+                    context menu.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3 py-1">Paste in search field</div>
+                <div class="p py-2">Paste YouTube video URL in the search field and click 'Go'. Use Ctrl+V.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3">Download Video</div>
+                <div class="p">You will get a list of files for download, video, and audio. Click the 'Download' button
+                    to start downloading the file</div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
