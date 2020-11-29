@@ -63,7 +63,7 @@
                   <tr>
                     <th>{{video.resolution}}</th>
                     <td>{{video.mime_type}}</td>
-                    <td><a href="{% url 'youtube_downloads' id video.itag %}" type="button" class="btn btn-sm btn-success">Download</a></td>
+                    <td><a href="{% url 'youtube_downloads' id video.itag %}" type="button" class="btn btn-sm btn-success" download>Download</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
