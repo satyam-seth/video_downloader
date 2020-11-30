@@ -27,6 +27,14 @@
         <div class="offset-md-1"></div>
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div {% if message.tags %} class='bg-{{message.tags}} text-center p-4 mt-5 border rounded' {% endif %}>
+                <p class="h3">{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <!-- download page only -->
     {% if download %}
     <div class="row mt-5 shadow-lg border rounded">
@@ -36,7 +44,8 @@
             <p class="pt-1 text-white" style="font-size: 10vm;">
                 <span class="border rounded shadow p-2">Views: {{view}}</span>
                 <span class="border rounded shadow p-2">Duration: {{length}}</span>
-                <button class="btn btn-outline-light shadow" type="button" data-toggle="collapse" data-target="#desc" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-outline-light shadow" type="button" data-toggle="collapse" data-target="#desc"
+                    aria-expanded="false" aria-controls="collapseExample">
                     Description
                 </button>
             </p>
@@ -44,30 +53,43 @@
                 <div class="card card-body shadow">
                     {{desc}}
                 </div>
-              </div>
+            </div>
             <div class="embed-responsive embed-responsive-21by9 border shadow my-2">
                 <iframe class="embed-responsive-item" src="{{embed_link}}"></iframe>
-              </div>
+            </div>
         </div>
         <div class="col-12 col-md-6 pt-3">
             <table class="table table-hover text-white text-center table-striped border shadow">
                 <thead style="background-color: #334390;">
-                  <tr>
-                      <th scope="col">Quality</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Action</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">Quality</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {% for video in videos %}
-                  <tr>
-                    <th>{{video.resolution}}</th>
-                    <td>{{video.mime_type}}</td>
-                    <td><a href="{% url 'youtube_downloads' id video.itag %}" type="button" class="btn btn-sm btn-success" download>Download</a></td>
-                  </tr>
-                  {% endfor %}
+                    {% if videos %}
+                        {% for video in videos %}
+                        <tr>
+                            <th>{{video.resolution}}</th>
+                            <td>{{video.mime_type}}</td>
+                            <td><a href="{% url 'youtube_downloads' id video.itag %}" type="button"
+                                    class="btn btn-sm btn-success" download>Download</a></td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                    {% if audios %}
+                        {% for audio in audios %}
+                        <tr>
+                            <th>{{audio.resolution}}</th>
+                            <td>{{audio.mime_type}}</td>
+                            <td><a href="{% url 'youtube_downloads' id audio.itag %}" type="button"
+                                    class="btn btn-sm btn-success" download>Download</a></td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
     {% endif %}

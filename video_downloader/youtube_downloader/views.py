@@ -3,14 +3,11 @@ from .models import YoutubeRecord
 from .forms import YoutubeDownloadForm
 from pytube import YouTube
 from django.http import FileResponse
+from django.contrib import messages
 
 # Create your views here.
 
 def index(request):
-    context={
-            'youtube_active':'active',
-            'youtube_disabled':'disabled',
-            }
     if request.method=='POST':
         fm=YoutubeDownloadForm(request.POST)
         if fm.is_valid():
@@ -21,25 +18,30 @@ def index(request):
         try:
             yt=YouTube(link)
         except:
-            return redirect('home') # sorry.html
-        tumbnail_url=yt.thumbnail_url
-        title=yt.title
-        length=yt.length
-        desc=yt.description
-        view=yt.views
-        videos=yt.streams.filter(progressive=True)
-        context['embed_link']=link.replace('watch?v=','embed/')
-        context['tumbnail_url']=tumbnail_url
-        context['view']=view
-        context['length']=length
-        context['desc']=desc
-        context['download']=True
-        context['title']=title
-        context['videos']=videos
-        context['id']=pst.id
+            messages.warning(request,'Sorry something went wrong !!')
+            return redirect('youtube_index')
+        context={
+            'youtube_active':'active',
+            'youtube_disabled':'disabled',
+            'form':fm,
+            'embed_link':link.replace('watch?v=','embed/'),
+            'tumbnail_url':yt.thumbnail_url,
+            'view':yt.views,
+            'desc':yt.description,
+            'length':yt.length,
+            'title':yt.title,
+            'download':True,
+            'videos':yt.streams.filter(progressive=True,file_extension='mp4'),
+            'audios':yt.streams.filter(only_audio=True,file_extension='mp4'),
+            'id':pst.id
+            }
     else:
         fm=YoutubeDownloadForm()
-    context['form']=fm
+        context={
+            'youtube_active':'active',
+            'youtube_disabled':'disabled',
+            'form':fm
+            }
     return render(request,'youtube_downloader/youtube.html',context)
 
 def download(request,id,itag):
