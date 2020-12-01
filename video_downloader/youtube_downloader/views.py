@@ -1,9 +1,11 @@
+from io import BytesIO
 from django.shortcuts import redirect, render
 from .models import YoutubeRecord
 from .forms import YoutubeDownloadForm
 from pytube import YouTube
 from django.http import FileResponse
 from django.contrib import messages
+import os
 
 # Create your views here.
 
@@ -31,7 +33,7 @@ def index(request):
             'length':yt.length,
             'title':yt.title,
             'download':True,
-            'videos':yt.streams.filter(progressive=True,file_extension='mp4'),
+            'videos':yt.streams.filter(progressive=True,file_extension='mp4').order_by('resolution'),
             'audios':yt.streams.filter(only_audio=True,file_extension='mp4'),
             'id':pst.id
             }
@@ -47,6 +49,11 @@ def index(request):
 def download(request,id,itag):
     req=YoutubeRecord.objects.get(pk=id)
     yt=YouTube(req.link)
+    title=yt.title
     stream=yt.streams.get_by_itag(itag)
     data=stream.download(skip_existing=True)
-    return FileResponse(open(data,'rb'))
+    path=os.path.normpath(data)
+    with open(path,'rb') as f:
+        byteData=f.read()
+    os.remove(data)
+    return FileResponse(BytesIO(byteData),filename=title+'.mp4',as_attachment=True)

@@ -29,7 +29,7 @@
 
     {% if messages %}
         {% for message in messages %}
-            <div {% if message.tags %} class='bg-{{message.tags}} text-center p-4 mt-5 border rounded' {% endif %}>
+            <div {% if message.tags %} class='bg-{{message.tags}} text-center p-4 mt-5 border rounded sadow-lg' {% endif %}>
                 <p class="h3">{{message}}</p>
             </div>
         {% endfor %}
