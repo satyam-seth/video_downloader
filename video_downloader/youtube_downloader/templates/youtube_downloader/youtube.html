@@ -41,10 +41,10 @@
         <div class="col-12 col-md-6 py-3">
             <img src="{{tumbnail_url}}" class="img-thumbnail shadow" alt="tumbnail image"><br>
             <p class="p-2 mt-2 text-white shadow border rounded" style="font-size: 10vm;">Title: {{title}}</p>
-            <p class="pt-1 text-white" style="font-size: 10vm;">
+            <p class="text-white" style="font-size: 10vm;">
                 <span class="border rounded shadow p-2">Views: {{view}}</span>
-                <span class="border rounded shadow p-2">Duration: {{length}}</span>
-                <button class="btn btn-outline-light shadow" type="button" data-toggle="collapse" data-target="#desc"
+                <span class="border rounded shadow p-2">Duration: {{length}} Sec</span>
+                <button class="btn btn-outline-light shadow mt-3 mt-md-0" type="button" data-toggle="collapse" data-target="#desc"
                     aria-expanded="false" aria-controls="collapseExample">
                     Description
                 </button>
@@ -95,7 +95,7 @@
     {% endif %}
     <!-- end download page only -->
 
-    <div class="row pt-5">
+    <div class="row pt-5" id="help">
         <div class="col-12">
             <p class="text-responsive text-center text-white">How to download YouTube video online?</p>
         </div>

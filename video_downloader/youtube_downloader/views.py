@@ -56,4 +56,4 @@ def download(request,id,itag):
     with open(path,'rb') as f:
         byteData=f.read()
     os.remove(data)
-    return FileResponse(BytesIO(byteData),filename=title+'.mp4',as_attachment=True)
+    return FileResponse(BytesIO(byteData),filename=title+'.mp4',as_attachment=True,content_type='application/video/mp4')
