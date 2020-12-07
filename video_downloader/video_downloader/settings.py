@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'youtube_downloader',
+    'facebook_downloader',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white ">Paste your Facebook video link and click Go</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-1"></div>
+        <div class="col-12 col-md-10 px-3">
+            <form action="{% url 'facebook_index' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="{{form.link.id_for_label}}">{{form.link.label}}</span>
+                    </div>
+                    {{form.link}}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-danger">Go</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="offset-md-1"></div>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class='bg-{{message.tags}} text-center p-4 mt-5 border rounded sadow-lg' {% endif %}>
+        <p class="h3">{{message}}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- download page only -->
+    {% if download %}
+    <div class="row mt-5 shadow-lg border rounded">
+        <div class="col-12 col-md-6 py-3">
+            <p class="p-2 text-center text-white border rounded shadow" style="background-color: #334390;">SD Quality</p>
+            <div class="embed-responsive embed-responsive-16by9 border shadow my-2">
+                <video controls class="embed-responsive-item bg-dark">
+                    <source src="{{sdvideo_url}}" type="video/mp4">
+                <video>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 py-3">
+            <p class="p-2 text-center text-white border rounded shadow" style="background-color: #334390;">HD Quality</p>
+            <div class="embed-responsive embed-responsive-16by9 border shadow my-2">
+                <video controls class="embed-responsive-item bg-dark">
+                    <source src="{{hdvideo_url}}" type="video/mp4">
+                <video>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- end download page only -->
+
+    <div class="row pt-5" id="help">
+        <div class="col-12">
+            <p class="text-responsive text-center text-white">How to download Facebook video online?</p>
+        </div>
+    </div>
+    <div class="row pt-2 text-white text-center">
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3">Copy YouTube URL</div>
+                <div class="p">Copy your video URL from Facebook that you need to download. You can use Ctrl+C or with
+                    the
+                    context menu.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3 py-1">Paste in search field</div>
+                <div class="p py-2">Paste Facebook video URL in the search field and click 'Go'. Use Ctrl+V.</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 pb-2">
+            <div class="border rounded p-4 shadow">
+                <div class="h3">Download Video</div>
+                <div class="p">You will get a list of files for download video, Click the 'Download' button
+                    to start downloading the file</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
