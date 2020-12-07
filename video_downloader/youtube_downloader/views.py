@@ -22,11 +22,15 @@ def index(request):
         except:
             messages.warning(request,'Sorry something went wrong !!')
             return redirect('youtube_index')
+        if 'watch?v=' in link:
+            embed_link=link.replace('watch?v=','embed/')
+        elif 'youtu.be/' in link:
+            embed_link=link.replace('youtu.be/','youtube.com/embed/')
         context={
             'youtube_active':'active',
             'youtube_disabled':'disabled',
             'form':fm,
-            'embed_link':link.replace('watch?v=','embed/'),
+            'embed_link':embed_link,
             'tumbnail_url':yt.thumbnail_url,
             'view':yt.views,
             'desc':yt.description,
