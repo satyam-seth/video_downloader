@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>{% block title %}Video Downloader{% endblock title %}</title>
-  <!-- <link rel="icon" type="image/png" href="{% static 'core/images/fav.png' %}"> -->
+  <link rel="icon" type="image/png" href="{% static 'core/images/logo.png' %}">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,8 +23,10 @@
     {% include 'core/navbar.html' %}
   </div>
 
+  {% block header %}
+  {% endblock header %}
   <div class="container-fluid indigo">
-    <div class="row">
+    <div>
       {% block content %}
       {% endblock content %}
     </div>

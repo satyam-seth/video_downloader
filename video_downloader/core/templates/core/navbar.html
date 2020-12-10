@@ -1,5 +1,7 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-mainbg">
-    <a class="navbar-brand navbar-logo" href="{% url 'home' %}">Video Downloader</a>
+    <a class="navbar-brand navbar-logo" href="{% url 'home' %}">
+        <img height="40vh" src="{% static 'core/images/logo.png' %}"> Video Downloader</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-bars text-white"></i>
     </button>
@@ -14,9 +16,6 @@
             </li>
             <li class="nav-item {{facebook_active}}">
                 <a class="nav-link {{facebook_disabled}}" href="{% url 'facebook_index' %}"><i class="fab fa-facebook"></i> Facebook</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="fab fa-instagram"></i> Instagram</a>
             </li>
         </ul>
     </div>
