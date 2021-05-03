@@ -20,8 +20,6 @@ def index(request):
             html = r.get(link)
             sdvideo_url=re.search('sd_src:"(.+?)"', html.text)[1]
             hdvideo_url = re.search('hd_src:"(.+?)"', html.text)[1]
-            print(sdvideo_url)
-            print(hdvideo_url)
         except:
             messages.warning(request,'Sorry something went wrong !!')
             return redirect('facebook_index')
