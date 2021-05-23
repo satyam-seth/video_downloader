@@ -16,7 +16,6 @@ def index(request):
             pst.save()
         fm=FacebookDownloadForm()
         try:
-            print(link)
             html = r.get(link)
             sdvideo_url=re.search('sd_src:"(.+?)"', html.text)[1]
             hdvideo_url = re.search('hd_src:"(.+?)"', html.text)[1]
